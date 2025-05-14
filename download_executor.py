@@ -8,16 +8,16 @@ if today.day == 10:
 
     # LPG Prices
 
-    df_glp = pd.read_parquet('LPG Prices.parquet', engine='pyarrow')
+    df_lpg = pd.read_parquet('LPG Prices.parquet', engine='pyarrow')
 
-    df_glp_past_4_weeks = download_LPG()
+    df_lpg_past_4_weeks = download_LPG()
 
-    if df_glp.equals(df_glp_past_4_weeks):
+    if df_lpg.equals(df_lpg_past_4_weeks):
         print('LPG: No new data to append\n')
     else:
         print('LPG: New data to append\n')
-        df_glp = pd.concat([df_glp, df_glp_past_4_weeks])
-        df_glp.to_parquet('LPG Prices.parquet', index=False, engine='pyarrow')
+        df_lpg = pd.concat([df_lpg, df_lpg_past_4_weeks])
+        df_lpg.to_parquet('LPG Prices.parquet', index=False, engine='pyarrow')
 
     # Gasoline Ethanol Prices
 
